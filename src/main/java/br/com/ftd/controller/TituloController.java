@@ -38,6 +38,12 @@ public class TituloController {
 		return mv;
 	}
 	
+	@RequestMapping
+	public ModelAndView Pesquisar() {
+		ModelAndView mv = new ModelAndView("PesquisaTitulos");
+		return mv;
+	}
+	
 	@ModelAttribute("todosStatusTitulo")
 	public List<StatusTitulo> todosStatusTitulo(){
 		return Arrays.asList(StatusTitulo.values());
