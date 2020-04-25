@@ -1,11 +1,13 @@
 package br.com.ftd.controller;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
 
+import br.com.ftd.model.StatusTitulo;
 import br.com.ftd.model.Titulo;
 import br.com.ftd.repository.Titulos;
 
@@ -30,6 +32,13 @@ public class CadastroTituloService {
 	
 	public void deleteById(Long codigo) {
 		titulos.deleteById(codigo);
+	}
+
+	public String receber(Long codigo) {
+		Optional<Titulo> titulo = titulos.findById(codigo);
+		titulo.get().setStatus(StatusTitulo.RECEBIDO);
+		titulos.save(titulo.get());
+		return StatusTitulo.RECEBIDO.getDescricao()	;
 	}
 
 }
