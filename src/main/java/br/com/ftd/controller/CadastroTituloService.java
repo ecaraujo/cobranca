@@ -3,6 +3,7 @@ package br.com.ftd.controller;
 import java.util.List;
 import java.util.Optional;
 
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
@@ -10,6 +11,7 @@ import org.springframework.stereotype.Service;
 import br.com.ftd.model.StatusTitulo;
 import br.com.ftd.model.Titulo;
 import br.com.ftd.repository.Titulos;
+import br.com.ftd.repository.filter.TituloFilter;
 
 @Service
 public class CadastroTituloService {
@@ -41,4 +43,11 @@ public class CadastroTituloService {
 		return StatusTitulo.RECEBIDO.getDescricao()	;
 	}
 
+	public List<Titulo> findByDescricaoContaining(TituloFilter filtro){
+		System.out.println("====>" + filtro.getDescricao());
+		if(StringUtils.isEmpty(filtro.getDescricao())) {
+			filtro.setDescricao("");
+		}
+		return titulos.findByDescricaoContaining(filtro.getDescricao());
+	}
 }

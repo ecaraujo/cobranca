@@ -17,6 +17,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import br.com.ftd.model.StatusTitulo;
 import br.com.ftd.model.Titulo;
+import br.com.ftd.repository.filter.TituloFilter;
 
 @Controller
 @RequestMapping("/titulos")
@@ -49,12 +50,13 @@ public class TituloController {
 	}
 	
 	@RequestMapping
-	public ModelAndView Pesquisar() {
-		List<Titulo> todosTitulos = cadastroTituloService.findAll();
+	public ModelAndView Pesquisar(@ModelAttribute("filtro") TituloFilter filtro) {
+		List<Titulo> todosTitulos = cadastroTituloService.findByDescricaoContaining(filtro);
 		ModelAndView mv = new ModelAndView("PesquisaTitulos");
 		mv.addObject("titulos", todosTitulos);
 		return mv;
 	}
+	
 	
 	@RequestMapping("/{codigo}")
 	public ModelAndView edicao(@PathVariable("codigo") Titulo titulo) {
