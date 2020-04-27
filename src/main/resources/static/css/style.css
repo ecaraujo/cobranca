@@ -1,15 +1,19 @@
+/*Tela grande*/
+@media (min-width: 768px){
+
+	.panel-default {
+		margin-left: 15px;
+		margin-right: 15px;
+	}
+	
+	.alert{
+		margin-left: 15px;
+		margin-right: 15px;
+	}
+}
+	
 .navbar-brand {
 	padding-top: 12px;
-}
-
-.panel-default {
-	margin-left: 15px;
-	margin-right: 15px;
-}
-
-.alert{
-	margin-left: 15px;
-	margin-right: 15px;
 }
 
 .aw-link-panel{
